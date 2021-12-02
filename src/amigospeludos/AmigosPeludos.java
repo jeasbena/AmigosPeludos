@@ -6,6 +6,7 @@ import entidades.Dueño;
 import entidades.Mascota;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 import lugares.Ciudad;
 
 public class AmigosPeludos {
@@ -15,9 +16,121 @@ public class AmigosPeludos {
     public static final ArrayList<Ciudad> ciudades = new ArrayList<>();
     public static final ArrayList<Auspiciante> auspiciantes = new ArrayList<>();
     public static final ArrayList<Dueño> dueños = new ArrayList<>();
+    
+    private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+        cargarDatos();
+        menuPrincipal();
+    }
+    
+    private static void menuPrincipal(){
+        String opcion;
+        String MENU = "\n1. Administrar Concursos\n"
+                + "2. Administrar Dueños\n"
+                + "3. Administrar Mascotas\n"
+                + "0. Salir";
+        do {
+            System.out.println(MENU);
+            System.out.print("\nOpción: ");
+            opcion = sc.nextLine();
+            switch (opcion) {
+                case "1":
+                    menuConcursos();
+                    break;
+                case "2":
+                    menuDueños();
+                    break;
+                case "3":
+                    menuMascotas();
+                    break;
+                case "0":
+                    System.out.println("\nSaliendo...");
+                    break;
+                default:
+                    System.out.println("\nOpción Incorrecta");
+            }
+            
+        } while (!opcion.equals("0"));
         
+    }
+    
+    private static void menuConcursos(){
+        String opcion;
+        String MENU = "\n1. Crear Concurso\n"
+                + "2. Inscribir Participante\n"
+                + "0. Regresar Al Menú Principal";
+        do {
+            System.out.println(MENU);
+            System.out.print("\nOpción: ");
+            opcion = sc.nextLine();
+            switch (opcion) {
+                case "1":
+                    
+                    break;
+                case "2":
+                    
+                    break;
+                case "0":
+                    System.out.println("\nRegresando...");
+                    break;
+                default:
+                    System.out.println("\nOpción Incorrecta");
+            }
+            
+        } while (!opcion.equals("0"));
+    }
+    
+    private static void menuDueños(){
+        String opcion;
+        String MENU = "\n1. Crear Dueño\n"
+                + "2. Editar Dueño\n"
+                + "0. Regresar Al Menú Principal";
+        do {
+            System.out.println(MENU);
+            System.out.print("\nOpción: ");
+            opcion = sc.nextLine();
+            switch (opcion) {
+                case "1":
+                    
+                    break;
+                case "2":
+                    
+                    break;
+                case "0":
+                    System.out.println("\nRegresando...");
+                    break;
+                default:
+                    System.out.println("\nOpción Incorrecta");
+            }
+            
+        } while (!opcion.equals("0"));        
+    }
+    
+    private static void menuMascotas(){
+        String opcion;
+        String MENU = "\n1. Crear Mascota\n"
+                + "2. Eliminar Mascota\n"
+                + "0. Regresar Al Menú Principal";
+        do {
+            System.out.println(MENU);
+            System.out.print("\nOpción: ");
+            opcion = sc.nextLine();
+            switch (opcion) {
+                case "1":
+                    
+                    break;
+                case "2":
+                    
+                    break;
+                case "0":
+                    System.out.println("\nRegresando...");
+                    break;
+                default:
+                    System.out.println("\nOpción Incorrecta");
+            }
+            
+        } while (!opcion.equals("0"));        
     }
     
     private static void cargarDatos(){
