@@ -75,12 +75,28 @@ public class AmigosPeludos {
                     String nombre = sc.nextLine();
                     System.out.print("\nFecha del Evento: ");
                     String fechaEvento = sc.nextLine();
+                    while (!fechaCorrecta(fechaEvento)) {
+                        System.out.print("\nFecha del Evento: ");
+                        fechaEvento = sc.nextLine();
+                    }
                     System.out.print("\nHora del Evento: ");
                     String horaEvento = sc.nextLine();
+                    while (!horaCorrecta(horaEvento)) {
+                        System.out.print("\nHora del Evento: ");
+                        horaEvento = sc.nextLine();
+                    }
                     System.out.print("\nInicio de Inscripción: ");
                     String inicioInscripcion = sc.nextLine();
+                    while (!fechaCorrecta(inicioInscripcion)) {
+                        System.out.print("\nInicio de Inscripción: ");
+                        inicioInscripcion = sc.nextLine();
+                    }
                     System.out.print("\nCierre de Inscripción: ");
                     String cierreInscripcion = sc.nextLine();
+                    while (!fechaCorrecta(cierreInscripcion)) {
+                        System.out.print("\nCierre de Inscripción: ");
+                        cierreInscripcion = sc.nextLine();
+                    }
                     System.out.println("\nCiudad:");
                     for (Ciudad ciudad : ciudades) {
                         System.out.println("\t- " + ciudad.getCodigo() + ": " + ciudad.getNombre());
@@ -124,7 +140,9 @@ public class AmigosPeludos {
                     } while (!codigo.equals("SALIR"));
                     System.out.print("\nTipo Mascota: ");
                     String tipoMascota = sc.nextLine().toUpperCase();
-                    while (!Mascota.TIPOS.contains(tipoMascota)) {
+                    while (!(Mascota.TIPOS.contains(tipoMascota)
+                            || tipoMascota.equals("TODOS")
+                            || tipoMascota.equals("TODO"))) {
                         System.out.print("\nTipo Mascota: ");
                         tipoMascota = sc.nextLine().toUpperCase();
                     }
@@ -144,7 +162,9 @@ public class AmigosPeludos {
                     }
                     Mascota mascota;
                     for (Mascota masc : mascotas) {
-                        if (masc.getTipo().equals(concurso.getTipoMascota()) || concurso.getTipoMascota().equals("TODOS")) {
+                        if (masc.getTipo().equals(concurso.getTipoMascota())
+                                || concurso.getTipoMascota().equals("TODOS")
+                                || concurso.getTipoMascota().equals("TODO")) {
                             System.out.println("\t- " + masc.getCodigo() + ": " + masc.getNombre());
                         }
                     }
@@ -170,14 +190,14 @@ public class AmigosPeludos {
     }
 
     private static void menuDueños() {
-        for (Dueño dueño : dueños) {
-            System.out.println(dueño);
-        }
         String opcion;
         String MENU = "\n1. Crear Dueño\n"
                 + "2. Editar Dueño\n"
                 + "0. Regresar Al Menú Principal";
         do {
+            for (Dueño dueño : dueños) {
+                System.out.println(dueño);
+            }
             System.out.println(MENU);
             System.out.print("\nOpción: ");
             opcion = sc.nextLine();
@@ -265,6 +285,10 @@ public class AmigosPeludos {
                 + "2. Eliminar Mascota\n"
                 + "0. Regresar Al Menú Principal";
         do {
+            for (Mascota mascota : mascotas) {
+                System.out.println("\nCodigo: " + mascota.getCodigo()
+                        + "\nNombre: " + mascota.getNombre());
+            }
             System.out.println(MENU);
             System.out.print("\nOpción: ");
             opcion = sc.nextLine();
@@ -273,11 +297,19 @@ public class AmigosPeludos {
                     System.out.print("\nNombre: ");
                     String nombre = sc.nextLine();
                     System.out.print("\nTipo: ");
-                    String tipo = sc.nextLine();
+                    String tipo = sc.nextLine().toUpperCase();
+                    while (!Mascota.TIPOS.contains(tipo)) {
+                        System.out.print("\nTipo: ");
+                        tipo = sc.nextLine().toUpperCase();
+                    }
                     System.out.print("\nRaza: ");
                     String raza = sc.nextLine();
                     System.out.print("\nFecha de Nacimiento: ");
                     String fecha = sc.nextLine();
+                    while (!fechaCorrecta(fecha)) {
+                        System.out.print("\nFecha de Nacimiento: ");
+                        fecha = sc.nextLine();
+                    }
                     System.out.println("\nDueño:");
                     for (Dueño dueño : dueños) {
                         System.out.println("\t- " + dueño.getCedula() + ": "
@@ -461,6 +493,26 @@ public class AmigosPeludos {
             }
         }
         return true;
+    }
+
+    private static boolean fechaCorrecta(String string) {
+        return string.length() == 10 && string.charAt(2) == '/'
+                && string.charAt(5) == '/' && esNumero(string.substring(0, 2))
+                && esNumero(string.substring(3, 5))
+                && esNumero(string.substring(6))
+                && Integer.parseInt(string.substring(0, 2)) <= 31
+                && Integer.parseInt(string.substring(0, 2)) >= 1
+                && Integer.parseInt(string.substring(3, 5)) <= 12
+                && Integer.parseInt(string.substring(3, 5)) >= 1
+                && Integer.parseInt(string.substring(6)) >= 1700;
+    }
+
+    private static boolean horaCorrecta(String string) {
+        return string.length() == 5 && string.charAt(2) == ':'
+                && esNumero(string.substring(0, 2))
+                && esNumero(string.substring(3))
+                && Integer.parseInt(string.substring(0, 2)) <= 24
+                && Integer.parseInt(string.substring(3)) < 60;
     }
 
 }

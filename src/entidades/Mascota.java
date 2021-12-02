@@ -94,13 +94,13 @@ public class Mascota {
     
     public static Mascota getMascota(ArrayList<Mascota> mascotas, String codigo, String tipo){
         for (Mascota mascota : mascotas) {
-            if (codigo.equals(""+mascota.getCodigo()) && mascota.getTipo().equals(tipo))
+            if ((codigo.equals(""+mascota.getCodigo())) && (mascota.getTipo().equals(tipo)
+                    || tipo.equals("TODOS") || tipo.equals("TODO")))
                 return mascota;
         }
         
         return null;
     }
-    
     
     
 }
