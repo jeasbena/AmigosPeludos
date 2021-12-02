@@ -1,10 +1,10 @@
-
 package entidades;
 
+import java.util.ArrayList;
 import lugares.Ciudad;
 
 public class Dueño {
-    
+
     private String cedula;
     private String nombres;
     private String apellidos;
@@ -29,6 +29,21 @@ public class Dueño {
 
     public void setCedula(String cedula) {
         this.cedula = cedula;
+    }
+
+    @Override
+    public String toString() {
+        return "\nCedula = " + cedula + "\nNombre = " + nombres + " " + apellidos + "\nEmail = " + email;
+    }
+    
+    
+    public static Dueño getDueño(ArrayList<Dueño> dueños, String cedula){
+        for (Dueño dueño : dueños) {
+            if (cedula.equals(dueño.getCedula()))
+                return dueño;
+        }
+        
+        return null;
     }
 
     public String getNombres() {
@@ -78,6 +93,5 @@ public class Dueño {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
+
 }

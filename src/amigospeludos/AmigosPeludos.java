@@ -1,4 +1,3 @@
-
 package amigospeludos;
 
 import entidades.Auspiciante;
@@ -10,21 +9,21 @@ import java.util.Scanner;
 import lugares.Ciudad;
 
 public class AmigosPeludos {
-    
+
     public static final ArrayList<Concurso> concursos = new ArrayList<>();
     public static final ArrayList<Mascota> mascotas = new ArrayList<>();
     public static final ArrayList<Ciudad> ciudades = new ArrayList<>();
     public static final ArrayList<Auspiciante> auspiciantes = new ArrayList<>();
     public static final ArrayList<Dueño> dueños = new ArrayList<>();
-    
+
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
         cargarDatos();
         menuPrincipal();
     }
-    
-    private static void menuPrincipal(){
+
+    private static void menuPrincipal() {
         String opcion;
         String MENU = "\n1. Administrar Concursos\n"
                 + "2. Administrar Dueños\n"
@@ -50,12 +49,12 @@ public class AmigosPeludos {
                 default:
                     System.out.println("\nOpción Incorrecta");
             }
-            
+
         } while (!opcion.equals("0"));
-        
+
     }
-    
-    private static void menuConcursos(){
+
+    private static void menuConcursos() {
         String opcion;
         String MENU = "\n1. Crear Concurso\n"
                 + "2. Inscribir Participante\n"
@@ -66,10 +65,10 @@ public class AmigosPeludos {
             opcion = sc.nextLine();
             switch (opcion) {
                 case "1":
-                    
+
                     break;
                 case "2":
-                    
+
                     break;
                 case "0":
                     System.out.println("\nRegresando...");
@@ -77,11 +76,14 @@ public class AmigosPeludos {
                 default:
                     System.out.println("\nOpción Incorrecta");
             }
-            
+
         } while (!opcion.equals("0"));
     }
-    
-    private static void menuDueños(){
+
+    private static void menuDueños() {
+        for (Dueño dueño : dueños) {
+            System.out.println(dueño);
+        }
         String opcion;
         String MENU = "\n1. Crear Dueño\n"
                 + "2. Editar Dueño\n"
@@ -90,11 +92,72 @@ public class AmigosPeludos {
             System.out.println(MENU);
             System.out.print("\nOpción: ");
             opcion = sc.nextLine();
+            String cedula;
             switch (opcion) {
                 case "1":
-                    
+                    System.out.print("\nCédula: ");
+                    cedula = sc.nextLine();
+                    System.out.print("\nNombres: ");
+                    String nombres = sc.nextLine();
+                    System.out.print("\nApellidos: ");
+                    String apellidos = sc.nextLine();
+                    System.out.print("\nDirección: ");
+                    String direccion = sc.nextLine();
+                    System.out.print("\nTeléfono: ");
+                    String telefono = sc.nextLine();
+                    System.out.println("\nCiudad:");
+                    for (Ciudad ciudad : ciudades) {
+                        System.out.println("\t- " + ciudad.getCodigo() + ": " + ciudad.getNombre());
+                    }
+                    System.out.println("\nElija el código de la ciudad: ");
+                    String codigoCiudad = sc.nextLine();
+                    Ciudad ciudad;
+                    while ((ciudad = Ciudad.getCiudad(ciudades, codigoCiudad)) == null) {
+                        System.out.println("\nElija el código de la ciudad: ");
+                        codigoCiudad = sc.nextLine();
+                    }
+                    System.out.print("\nEmail: ");
+                    String email = sc.nextLine();
+                    dueños.add(new Dueño(cedula, nombres, apellidos, direccion, telefono, ciudad, email));
                     break;
                 case "2":
+                    System.out.print("\nCédula: ");
+                    cedula = sc.nextLine();
+                    Dueño dueño;
+                    while ((dueño = Dueño.getDueño(dueños, cedula)) == null) {
+                        System.out.print("\nCédula: ");
+                        cedula = sc.nextLine();
+                    }
+                    String dato;
+                    do {
+                        System.out.println("\n¿Qué dato desea actualizar? (SALIR)");
+                        dato = sc.nextLine().toUpperCase();
+                        System.out.print(" > ");
+                        switch (dato) {
+                            case "NOMBRE":
+                            case "NOMBRES":
+                                dueño.setNombres(sc.nextLine());
+                                break;
+                            case "APELLIDO":
+                            case "APELLIDOS":
+                                dueño.setApellidos(sc.nextLine());
+                                break;
+                            case "DIRECCION":
+                                dueño.setDireccion(sc.nextLine());
+                                break;
+                            case "TELEFONO":
+                                dueño.setTelefono(sc.nextLine());
+                                break;
+                            case "EMAIL":
+                                dueño.setEmail(sc.nextLine());
+                                break;
+                            case "SALIR":
+                                System.out.println("\nGuardando...");
+                                break;
+                            default:
+                                System.out.println("\nDato incorrecto o no se puede actualizar");
+                        }
+                    } while (!dato.equals("SALIR"));
                     
                     break;
                 case "0":
@@ -103,11 +166,11 @@ public class AmigosPeludos {
                 default:
                     System.out.println("\nOpción Incorrecta");
             }
-            
-        } while (!opcion.equals("0"));        
+
+        } while (!opcion.equals("0"));
     }
-    
-    private static void menuMascotas(){
+
+    private static void menuMascotas() {
         String opcion;
         String MENU = "\n1. Crear Mascota\n"
                 + "2. Eliminar Mascota\n"
@@ -121,7 +184,7 @@ public class AmigosPeludos {
                     
                     break;
                 case "2":
-                    
+
                     break;
                 case "0":
                     System.out.println("\nRegresando...");
@@ -129,11 +192,11 @@ public class AmigosPeludos {
                 default:
                     System.out.println("\nOpción Incorrecta");
             }
-            
-        } while (!opcion.equals("0"));        
+
+        } while (!opcion.equals("0"));
     }
-    
-    private static void cargarDatos(){
+
+    private static void cargarDatos() {
         ciudades.addAll(Arrays.asList(
                 new Ciudad("Guayaquil", "Guayas"),
                 new Ciudad("Quito", "Pichincha"),
@@ -220,7 +283,7 @@ public class AmigosPeludos {
         concursos.addAll(Arrays.asList(
                 new Concurso("Peluditos", "10/11/2021", "16:00",
                         "10/10/2021", "08/11/2021", ciudades.get(0),
-                        "Parque Samanes", 
+                        "Parque Samanes",
                         new ArrayList<>(Arrays.asList(
                                 "$200 y Productos Cani",
                                 "$150",
@@ -245,7 +308,7 @@ public class AmigosPeludos {
                 ),
                 new Concurso("Mejores Amigos", "10/01/2022", "16:00",
                         "01/12/2021", "09/01/2022", ciudades.get(2),
-                        "Plaza", 
+                        "Plaza",
                         new ArrayList<>(Arrays.asList(
                                 "$300 y Productos Dog Show",
                                 "$200",
@@ -259,7 +322,7 @@ public class AmigosPeludos {
                         new ArrayList<>()
                 )
         ));
-       
+
     }
-    
+
 }
