@@ -1,6 +1,7 @@
 
 package entidades;
 
+import java.util.ArrayList;
 import lugares.Ciudad;
 
 public class Auspiciante {
@@ -76,6 +77,14 @@ public class Auspiciante {
 
     public int getCodigo() {
         return codigo;
+    }
+    
+    public static Auspiciante getAuspiciante(ArrayList<Auspiciante> auspiciantes, String codigo){
+        for (Auspiciante auspiciante : auspiciantes) {
+            if (codigo.equals(""+auspiciante.getCodigo()))
+                return auspiciante;
+        }        
+        return null;
     }
     
     

@@ -16,6 +16,8 @@ public class AmigosPeludos {
     public static final ArrayList<Auspiciante> auspiciantes = new ArrayList<>();
     public static final ArrayList<Dueño> dueños = new ArrayList<>();
 
+    public static final String FECHA_ACTUAL = "03/12/2021";
+
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -60,14 +62,101 @@ public class AmigosPeludos {
                 + "2. Inscribir Participante\n"
                 + "0. Regresar Al Menú Principal";
         do {
+            for (Concurso concurso : concursos) {
+                System.out.println(concurso);
+            }
             System.out.println(MENU);
             System.out.print("\nOpción: ");
             opcion = sc.nextLine();
+            String codigo;
             switch (opcion) {
                 case "1":
+                    System.out.print("\nNombre: ");
+                    String nombre = sc.nextLine();
+                    System.out.print("\nFecha del Evento: ");
+                    String fechaEvento = sc.nextLine();
+                    System.out.print("\nHora del Evento: ");
+                    String horaEvento = sc.nextLine();
+                    System.out.print("\nInicio de Inscripción: ");
+                    String inicioInscripcion = sc.nextLine();
+                    System.out.print("\nCierre de Inscripción: ");
+                    String cierreInscripcion = sc.nextLine();
+                    System.out.println("\nCiudad:");
+                    for (Ciudad ciudad : ciudades) {
+                        System.out.println("\t- " + ciudad.getCodigo() + ": " + ciudad.getNombre());
+                    }
+                    System.out.println("\nElija el código de la ciudad: ");
+                    String codigoCiudad = sc.nextLine();
+                    Ciudad ciudad;
+                    while ((ciudad = Ciudad.getCiudad(ciudades, codigoCiudad)) == null) {
+                        System.out.println("\nElija el código de la ciudad: ");
+                        codigoCiudad = sc.nextLine();
+                    }
+                    System.out.print("\nLugar: ");
+                    String lugar = sc.nextLine();
+                    System.out.print("\nCantidad de Premios: ");
+                    String n = sc.nextLine();
+                    while (!esNumero(n)) {
+                        System.out.print("\nCantidad de Premios: ");
+                        n = sc.nextLine();
+                    }
+                    ArrayList<String> premios = new ArrayList<>();
+                    for (int i = 0; i < Integer.parseInt(n); i++) {
+                        System.out.println("\n" + (i + 1) + "º Lugar:");
+                        premios.add(sc.nextLine());
+                    }
+                    ArrayList<Auspiciante> auspiciantesConcurso = new ArrayList<>();
+                    Auspiciante auspiciante;
+                    do {
+                        System.out.println("\nAgregar Auspiciantes o (SALIR)");
+                        for (Auspiciante ausp : auspiciantes) {
+                            System.out.println("\t- " + ausp.getCodigo() + ": " + ausp.getNombre());
+                        }
+                        System.out.println("\nIngrese el codigo");
+                        codigo = sc.nextLine().toUpperCase();
+                        while (!((auspiciante = Auspiciante.getAuspiciante(auspiciantes, codigo)) != null || codigo.equals("SALIR"))) {
+                            System.out.println("\nIngrese el codigo");
+                            codigo = sc.nextLine().toUpperCase();
+                        }
+                        if (!codigo.equals("SALIR") && !auspiciantesConcurso.contains(auspiciante)) {
+                            auspiciantesConcurso.add(auspiciante);
+                        }
+                    } while (!codigo.equals("SALIR"));
+                    System.out.print("\nTipo Mascota: ");
+                    String tipoMascota = sc.nextLine().toUpperCase();
+                    while (!Mascota.TIPOS.contains(tipoMascota)) {
+                        System.out.print("\nTipo Mascota: ");
+                        tipoMascota = sc.nextLine().toUpperCase();
+                    }
+                    concursos.add(new Concurso(nombre, fechaEvento, horaEvento,
+                            inicioInscripcion, cierreInscripcion, ciudad,
+                            lugar, premios, auspiciantesConcurso, tipoMascota,
+                            new ArrayList<Mascota>(), new ArrayList<Mascota>()));
 
                     break;
                 case "2":
+                    System.out.print("\nCódigo Concurso: ");
+                    codigo = sc.nextLine();
+                    Concurso concurso;
+                    while ((concurso = Concurso.getConcursoDisponible(concursos, codigo)) == null) {
+                        System.out.print("\nCódigo Concurso: ");
+                        codigo = sc.nextLine();
+                    }
+                    Mascota mascota;
+                    for (Mascota masc : mascotas) {
+                        if (masc.getTipo().equals(concurso.getTipoMascota()) || concurso.getTipoMascota().equals("TODOS")) {
+                            System.out.println("\t- " + masc.getCodigo() + ": " + masc.getNombre());
+                        }
+                    }
+                    System.out.println("\nElija el código de la mascota: ");
+                    codigo = sc.nextLine();
+                    while ((mascota = Mascota.getMascota(mascotas, codigo, concurso.getTipoMascota())) == null) {
+                        System.out.println("\nElija el código de la mascota: ");
+                        codigoCiudad = sc.nextLine();
+                    }
+                    if (!concurso.getMascotasInscritas().contains(mascota)) {
+                        concurso.getMascotasInscritas().add(mascota);
+                    }
 
                     break;
                 case "0":
@@ -263,7 +352,7 @@ public class AmigosPeludos {
                         "3216549", ciudades.get(0), "jguaman@yahoo.com")
         ));
         mascotas.addAll(Arrays.asList(
-                new Mascota("Fluffy", "PERRO", "Labrador",
+                new Mascota("Rex", "PERRO", "Labrador",
                         "05/01/2018", "",
                         dueños.get(0)),
                 new Mascota("Fluffy", "PERRO", "Labrador",
@@ -351,6 +440,27 @@ public class AmigosPeludos {
                 )
         ));
 
+    }
+
+    public static boolean compararFechas(String fecha1, String fecha2) {
+        String[] datos1 = fecha1.split("/");
+        String[] datos2 = fecha2.split("/");
+        int f1 = Integer.parseInt(datos1[0]);
+        f1 += Integer.parseInt(datos1[1]) * 30;
+        f1 += Integer.parseInt(datos1[2]) * 360;
+        int f2 = Integer.parseInt(datos2[0]);
+        f2 += Integer.parseInt(datos2[1]) * 30;
+        f2 += Integer.parseInt(datos2[2]) * 360;
+        return f1 > f2;
+    }
+
+    private static boolean esNumero(String string) {
+        for (char c : string.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

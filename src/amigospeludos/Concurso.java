@@ -1,4 +1,3 @@
-
 package amigospeludos;
 
 import entidades.Auspiciante;
@@ -7,6 +6,7 @@ import java.util.ArrayList;
 import lugares.Ciudad;
 
 public class Concurso {
+
     private String nombre;
     private String fechaEvento;
     private String horaEvento;
@@ -37,8 +37,15 @@ public class Concurso {
         this.ganadores = ganadores;
         codigo = ++contador;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "\nCodigo: " + codigo
+                + "\nNombre = " + nombre
+                + "\nFechaEvento = " + fechaEvento + " HoraEvento = " + horaEvento
+                + "\nCierreInscripcion = " + cierreInscripcion
+                + "\nMascotas: " + mascotasInscritas;
+    }
 
     public String getNombre() {
         return nombre;
@@ -139,7 +146,16 @@ public class Concurso {
     public void setGanadores(ArrayList<Mascota> ganadores) {
         this.ganadores = ganadores;
     }
-    
-    
-    
+
+    public static Concurso getConcursoDisponible(ArrayList<Concurso> concursos, String codigo) {
+        for (Concurso concurso : concursos) {
+            if (codigo.equals(""+concurso.getCodigo())
+                    && AmigosPeludos.compararFechas(concurso.getCierreInscripcion(), AmigosPeludos.FECHA_ACTUAL)) {
+                return concurso;
+            }
+        }
+
+        return null;
+    }
+
 }

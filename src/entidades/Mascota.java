@@ -2,6 +2,7 @@
 package entidades;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Mascota {
     
@@ -11,8 +12,9 @@ public class Mascota {
     private String fechaNacimiento;
     private String foto;
     private Dueño dueño;
-    private int contador = 0;
+    private static int contador = 0;
     private int codigo;
+    public static ArrayList<String> TIPOS = new ArrayList<>(Arrays.asList("PERRO", "GATO"));
 
     public Mascota(String nombre, String tipo, String raza, String fechaNacimiento, String foto, Dueño dueño) {
         this.nombre = nombre;
@@ -22,6 +24,11 @@ public class Mascota {
         this.foto = foto;
         this.dueño = dueño;
         codigo = ++contador;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 
     public String getNombre() {
@@ -79,6 +86,15 @@ public class Mascota {
     public static Mascota getMascota(ArrayList<Mascota> mascotas, String codigo){
         for (Mascota mascota : mascotas) {
             if (codigo.equals(""+mascota.getCodigo()))
+                return mascota;
+        }
+        
+        return null;
+    }
+    
+    public static Mascota getMascota(ArrayList<Mascota> mascotas, String codigo, String tipo){
+        for (Mascota mascota : mascotas) {
+            if (codigo.equals(""+mascota.getCodigo()) && mascota.getTipo().equals(tipo))
                 return mascota;
         }
         
