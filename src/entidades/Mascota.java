@@ -1,6 +1,8 @@
 
 package entidades;
 
+import java.util.ArrayList;
+
 public class Mascota {
     
     private String nombre;
@@ -70,8 +72,17 @@ public class Mascota {
         this.dueño = dueño;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public int getCodigo() {
+        return codigo;
+    }
+    
+    public static Mascota getMascota(ArrayList<Mascota> mascotas, String codigo){
+        for (Mascota mascota : mascotas) {
+            if (codigo.equals(""+mascota.getCodigo()))
+                return mascota;
+        }
+        
+        return null;
     }
     
     

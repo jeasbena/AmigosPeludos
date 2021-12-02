@@ -158,7 +158,7 @@ public class AmigosPeludos {
                                 System.out.println("\nDato incorrecto o no se puede actualizar");
                         }
                     } while (!dato.equals("SALIR"));
-                    
+
                     break;
                 case "0":
                     System.out.println("\nRegresando...");
@@ -181,10 +181,38 @@ public class AmigosPeludos {
             opcion = sc.nextLine();
             switch (opcion) {
                 case "1":
-                    
+                    System.out.print("\nNombre: ");
+                    String nombre = sc.nextLine();
+                    System.out.print("\nTipo: ");
+                    String tipo = sc.nextLine();
+                    System.out.print("\nRaza: ");
+                    String raza = sc.nextLine();
+                    System.out.print("\nFecha de Nacimiento: ");
+                    String fecha = sc.nextLine();
+                    System.out.println("\nDueño:");
+                    for (Dueño dueño : dueños) {
+                        System.out.println("\t- " + dueño.getCedula() + ": "
+                                + dueño.getNombres() + " " + dueño.getApellidos());
+                    }
+                    System.out.println("\nCédula del dueño: ");
+                    String cedula = sc.nextLine();
+                    Dueño dueño;
+                    while ((dueño = Dueño.getDueño(dueños, cedula)) == null) {
+                        System.out.println("\nCédula del dueño: ");
+                        cedula = sc.nextLine();
+                    }
+                    mascotas.add(new Mascota(nombre, tipo, raza, fecha, "", dueño));
                     break;
                 case "2":
-
+                    System.out.print("\nCódigo: ");
+                    String codigo = sc.nextLine();
+                    Mascota mascota;
+                    while ((mascota = Mascota.getMascota(mascotas, codigo)) == null) {
+                        System.out.print("\nCódigo: ");
+                        codigo = sc.nextLine();
+                    }
+                    mascotas.remove(mascota);
+                    System.out.println("\nSe ha eliminado: " + mascota.getNombre());
                     break;
                 case "0":
                     System.out.println("\nRegresando...");
