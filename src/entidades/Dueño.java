@@ -31,7 +31,7 @@ public class Dueño {
         this.cedula = cedula;
     }
 
-    @Override
+    @Override  //Sobre-escritura de toString
     public String toString() {
         return "\nCedula = " + cedula + "\nNombre = " + nombres + " " + apellidos + "\nEmail = " + email;
     }

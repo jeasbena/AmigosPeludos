@@ -24,13 +24,17 @@ public class AmigosPeludos {
         cargarDatos();
         menuPrincipal();
     }
+    //Menu Principal
 
     private static void menuPrincipal() {
         String opcion;
-        String MENU = "\n1. Administrar Concursos\n"
-                + "2. Administrar Dueños\n"
-                + "3. Administrar Mascotas\n"
-                + "0. Salir";
+        String MENU
+                = "╔════════════════════════════════╗"
+                + "\n  1. Administrar Concursos \n"
+                + "  2. Administrar Dueños    \n"
+                + "  3. Administrar Mascotas  \n"
+                + "  0. Salir                 \n"
+                + "╚════════════════════════════════╝";
         do {
             System.out.println(MENU);
             System.out.print("\nOpción: ");
@@ -56,12 +60,27 @@ public class AmigosPeludos {
 
     }
 
+//MENU CONCURSO
+    /*   Al seleccionar esta opción se visualizará la lista de concursos existentes y luego un menú con estas opciones:
+    - Crear concurso
+    - Inscribir participante
+    - Regresar al menú principal
+    En la opción crear concurso ingresará todos los datos relacionados al concurso.
+    En la opción Inscribir participantes se mostrará el listado de concursos que están abiertos y
+    se solicitará ingresar el código del concurso. Luego se solicitará el id de la mascota a ingresar
+     */
     private static void menuConcursos() {
         String opcion;
-        String MENU = "\n1. Crear Concurso\n"
-                + "2. Inscribir Participante\n"
-                + "0. Regresar Al Menú Principal";
+        String MENU
+                = "\n╔════════════════════════════════════╗"
+                + "\n  1. Crear Concurso\n"
+                + "  2. Inscribir Participante\n"
+                + "  0. Regresar Al Menú Principal\n"
+                + "╚════════════════════════════════════╝";
         do {
+            System.out.println("╔══════════════════════════════╗");
+            System.out.println("    CONCURSOS REGISTRADOS  ");
+            System.out.println("╚══════════════════════════════╝");
             for (Concurso concurso : concursos) {
                 System.out.println(concurso);
             }
@@ -141,7 +160,7 @@ public class AmigosPeludos {
                     System.out.print("\nTipo Mascota: ");
                     String tipoMascota = sc.nextLine().toUpperCase();
                     while (!(Mascota.TIPOS.contains(tipoMascota)
-                            || tipoMascota.equals("TODOS")
+                            || tipoMascota.equals("TODOS") //Se procura validar errores de escritura
                             || tipoMascota.equals("TODO"))) {
                         System.out.print("\nTipo Mascota: ");
                         tipoMascota = sc.nextLine().toUpperCase();
@@ -189,12 +208,25 @@ public class AmigosPeludos {
         } while (!opcion.equals("0"));
     }
 
+    //MENU DUEÑOS
+    /*
+    Al seleccionar esta opción se visualizará la lista de dueños existentes y luego un menú con estas opciones:
+    - Crear dueño
+    - Editar dueño
+    - Regresar al menú principal
+     */
     private static void menuDueños() {
         String opcion;
-        String MENU = "\n1. Crear Dueño\n"
-                + "2. Editar Dueño\n"
-                + "0. Regresar Al Menú Principal";
+        String MENU
+                = "\n╔═════════════════════════════════════╗"
+                + "\n  1. Crear Dueño\n"
+                + "  2. Editar Dueño\n"
+                + "  0. Regresar Al Menú Principal\n"
+                + "╚═════════════════════════════════════╝";
         do {
+            System.out.println("╔══════════════════════════════╗");
+            System.out.println("     DUEÑOS REGISTRADOS    ");
+            System.out.println("╚══════════════════════════════╝");
             for (Dueño dueño : dueños) {
                 System.out.println(dueño);
             }
@@ -281,10 +313,18 @@ public class AmigosPeludos {
 
     private static void menuMascotas() {
         String opcion;
-        String MENU = "\n1. Crear Mascota\n"
-                + "2. Eliminar Mascota\n"
-                + "0. Regresar Al Menú Principal";
+        //Menu Mascotas
+        String MENU
+                = "\n╔═════════════════════════════════════╗"
+                + "\n  1. Crear Mascota\n"
+                + "  2. Eliminar Mascota\n"
+                + "  0. Regresar Al Menú Principal\n"
+                + "╚═════════════════════════════════════╝";
         do {
+            System.out.println("╔══════════════════════════════╗");
+            System.out.println("    MASCOTAS REGISTRADAS   ");
+            System.out.println("╚══════════════════════════════╝");
+
             for (Mascota mascota : mascotas) {
                 System.out.println("\nCodigo: " + mascota.getCodigo()
                         + "\nNombre: " + mascota.getNombre());

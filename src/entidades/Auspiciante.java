@@ -12,9 +12,10 @@ public class Auspiciante {
     private Ciudad ciudad;
     private String email;
     private String WebPage;
-    private static int contador = 0;
+    private static int contador = 0;//Primer codigo de Aupiciante
     private int codigo;
 
+    //Definiendo Auspiciante con sus datos
     public Auspiciante(String nombre, String direccion, String telefono, Ciudad ciudad, String email, String WebPage) {
         this.nombre = nombre;
         this.direccion = direccion;
@@ -22,11 +23,12 @@ public class Auspiciante {
         this.ciudad = ciudad;
         this.email = email;
         this.WebPage = WebPage;
-        codigo = ++contador;
+        codigo = ++contador;//Genera un codigo de identificacion para cada Auspiciante
     }
     
     
-
+    //Definicion de setters y getters
+    
     public String getNombre() {
         return nombre;
     }
@@ -79,9 +81,10 @@ public class Auspiciante {
         return codigo;
     }
     
+    //Toma los datos del auspiciante previamente registrado
     public static Auspiciante getAuspiciante(ArrayList<Auspiciante> auspiciantes, String codigo){
         for (Auspiciante auspiciante : auspiciantes) {
-            if (codigo.equals(""+auspiciante.getCodigo()))
+            if (codigo.equals(""+auspiciante.getCodigo()))//El codigo se lo pasa a String para mejor manejo de validacion
                 return auspiciante;
         }        
         return null;

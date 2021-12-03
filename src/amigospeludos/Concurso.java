@@ -37,7 +37,7 @@ public class Concurso {
         this.ganadores = ganadores;
         codigo = ++contador;
     }
-
+    //TOSTRING
     @Override
     public String toString() {
         return "\nCodigo: " + codigo
@@ -46,7 +46,7 @@ public class Concurso {
                 + "\nCierreInscripcion = " + cierreInscripcion
                 + "\nMascotas: " + mascotasInscritas;
     }
-
+    //SETTERS Y GETTERS
     public String getNombre() {
         return nombre;
     }
@@ -149,7 +149,7 @@ public class Concurso {
 
     public static Concurso getConcursoDisponible(ArrayList<Concurso> concursos, String codigo) {
         for (Concurso concurso : concursos) {
-            if (codigo.equals(""+concurso.getCodigo())
+            if (codigo.equals(""+concurso.getCodigo()) //el codigo se lo pasa a String para mejor manejo de validacion
                     && AmigosPeludos.compararFechas(concurso.getCierreInscripcion(), AmigosPeludos.FECHA_ACTUAL)) {
                 return concurso;
             }

@@ -23,14 +23,16 @@ public class Mascota {
         this.fechaNacimiento = fechaNacimiento;
         this.foto = foto;
         this.dueño = dueño;
-        codigo = ++contador;
+        codigo = ++contador; //Genera un codigo de identificacion para cada Mascota
     }
 
-    @Override
+    @Override //Sobre-escritura de toString
     public String toString() {
         return nombre;
     }
-
+    
+    //Se define getters y setters
+    
     public String getNombre() {
         return nombre;
     }
@@ -94,7 +96,7 @@ public class Mascota {
     
     public static Mascota getMascota(ArrayList<Mascota> mascotas, String codigo, String tipo){
         for (Mascota mascota : mascotas) {
-            if ((codigo.equals(""+mascota.getCodigo())) && (mascota.getTipo().equals(tipo)
+            if ((codigo.equals(""+mascota.getCodigo())) && (mascota.getTipo().equals(tipo) //El codigo se lo pasa a String para mejor manejo de validacion
                     || tipo.equals("TODOS") || tipo.equals("TODO")))
                 return mascota;
         }
