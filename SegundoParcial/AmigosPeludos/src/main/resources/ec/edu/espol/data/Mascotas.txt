@@ -1,0 +1,8 @@
+1;Max;16/11/2021;Galgo;Perro;Juan Torres;galgo
+2;Cash;18/05/2021;Bulldog;Perro;Maria Reyes;bulldog
+3;Rex;05/01/2021;Sabueso;Perro;Juan Torres;sabueso
+4;Jin;29/01/2021;Retriever;Perro;Mario Paredes;retriever
+6;Oreo;22/01/2021;Americano;Gato;Maria Reyes;americano
+7;Luna;18/03/2022;Siames;Gato;Lucas Campos;siames
+5;Milo;14/09/2021;Escoces;Gato;Mario Paredes;escoces
+8;LordVader;08/12/2019;Pantera;Gato;Xavier López M.;LordVader

@@ -1,0 +1,5 @@
+1;Guayaquil;Guayas
+2;Babahoyo;Los Ríos
+3;Durán;Guayas
+4;Quito;Pichincha
+5;Milagro;Guayas

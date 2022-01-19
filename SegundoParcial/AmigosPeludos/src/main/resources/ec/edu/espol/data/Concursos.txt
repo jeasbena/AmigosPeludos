@@ -1,0 +1,3 @@
+3;Concurso Perros Finalizado;04/01/2022;15:30;21/12/2021;30/12/2021;Centro;Perros;Durán
+1;Concurso Perros Por Razas;06/02/2022;14:30;30/12/2021;28/01/2022;Guayarte;Perros;Guayaquil
+2;Concurso Gatos (Pelaje);05/02/2022;13:30;31/12/2021;28/01/2022;Guayarte;Gatos;Guayaquil
