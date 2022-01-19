@@ -1,0 +1,5 @@
+1;Juan;Torres;juan@gmail.com;Calle 10 de agosto;0998858586;Guayaquil
+2;Maria;Reyes;mari@gmail.com;Calle Eloy Alfaro;0998959596;Durán
+3;Mario;Paredes;mario@gmail.com;Calle 9 de octubre;0995955662;Guayaquil
+4;Lucas;Campos;lucas@gmail.com;Calle Azuay;0999885554;Durán
+5;Xavier;López M.;dmsray@gmail.com;Florida Norte ;042260360;Guayaquil

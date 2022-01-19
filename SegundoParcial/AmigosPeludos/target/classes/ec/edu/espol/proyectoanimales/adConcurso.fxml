@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="527.0" prefWidth="626.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectoanimales.AdConcursoController">
+   <children>
+      <HBox alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="484.0" prefWidth="591.0" style="-fx-background-color: #2dabab;">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="475.0" prefWidth="586.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="280.0" text="ADMINISTRAR CONCURSOS" textFill="#252520">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox prefWidth="395.0">
+                           <children>
+                              <TableView fx:id="losConcursos" prefHeight="257.0" prefWidth="390.0">
+                                 <columns>
+                                    <TableColumn fx:id="colcodigo" prefWidth="48.0" text="Código" />
+                                    <TableColumn fx:id="colnombre" prefWidth="153.0" text="Nombre" />
+                                    <TableColumn fx:id="colfecha" prefWidth="91.0" text="Fecha" />
+                                    <TableColumn fx:id="colciudad" prefWidth="97.60000000000002" text="Ciudad" />
+                                 </columns>
+                              </TableView>
+                              <VBox fx:id="eventos1" alignment="CENTER" prefHeight="257.0" prefWidth="214.0" style="-fx-background-color: #3f2863;">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#editar" prefHeight="38.0" prefWidth="117.0" text="Editar" />
+                                    <Button mnemonicParsing="false" onAction="#eliminar" prefHeight="38.0" prefWidth="117.0" text="Eliminar" />
+                                    <Button mnemonicParsing="false" onAction="#consultar" prefHeight="38.0" prefWidth="117.0" text="Consultar Inscritos" />
+                                    <Button mnemonicParsing="false" onAction="#ganadores" prefHeight="38.0" prefWidth="117.0" text="Ver ganadores" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="390.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#crearConcurso" prefHeight="38.0" prefWidth="117.0" text="Crear Concurso" />
+                              <Label prefHeight="17.0" prefWidth="75.0" />
+                              <Button mnemonicParsing="false" onAction="#enviarInvitaciones" prefHeight="38.0" prefWidth="117.0" text="Enviar Invitaciones" />
+                              <Label prefHeight="17.0" prefWidth="75.0" />
+                              <Button mnemonicParsing="false" onAction="#regresar" prefHeight="38.0" prefWidth="117.0" text="Regresar" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>
